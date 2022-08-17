@@ -7,6 +7,7 @@ export class App extends Component {
     contacts: [],
     name: '',
     number: '',
+    filter: '',
   };
 
   ChangeHandler = e => {
@@ -43,13 +44,21 @@ export class App extends Component {
     const { contacts, name, number } = this.state;
     return (
       <>
+        <h2>Phonebook</h2>
         <Phonebook
           onSubmitClick={this.SubmitHandler}
           nameValue={name}
           numberValue={number}
           ChangeHandler={this.ChangeHandler}
         />
-        <Contacts contacts={contacts} />
+        {contacts.length !== 0 && (
+          <>
+            <h2>Contacts</h2>
+            <p>Find contacts by name</p>
+            <input type="text" name="filter" />
+            <Contacts contacts={contacts} />
+          </>
+        )}
       </>
     );
   }
