@@ -14,6 +14,10 @@ export class App extends Component {
     const {
       target: { value, name },
     } = e;
+    if (name === 'filter') {
+      const filterValue = value.toLowerCase();
+      this.setState({ [name]: filterValue });
+    }
     this.setState({ [name]: value });
   };
 
@@ -21,15 +25,15 @@ export class App extends Component {
     const {
       target: {
         elements: {
-          name: { value: NameValue },
-          number: { value: NumberValue },
+          name: { value: nameValue },
+          number: { value: numberValue },
         },
       },
     } = e;
     e.preventDefault();
     this.setState(prevState => ({
       contacts: [
-        { name: NameValue, number: NumberValue },
+        { name: nameValue, number: numberValue },
         ...prevState.contacts,
       ],
     }));
@@ -41,7 +45,7 @@ export class App extends Component {
   };
 
   render() {
-    const { contacts, name, number } = this.state;
+    const { contacts, name, number, filter } = this.state;
     return (
       <>
         <h2>Phonebook</h2>
@@ -55,7 +59,12 @@ export class App extends Component {
           <>
             <h2>Contacts</h2>
             <p>Find contacts by name</p>
-            <input type="text" name="filter" />
+            <input
+              type="text"
+              name="filter"
+              value={filter}
+              onChange={this.ChangeHandler}
+            />
             <Contacts contacts={contacts} />
           </>
         )}
