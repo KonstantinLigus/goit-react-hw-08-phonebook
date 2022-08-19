@@ -1,12 +1,7 @@
-export function Phonebook({
-  onSubmitClick,
-  nameValue,
-  numberValue,
-  ChangeHandler,
-}) {
+export function ContactForm(props) {
   return (
     <>
-      <form onSubmit={onSubmitClick}>
+      <form onSubmit={props.submitHandler}>
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -15,8 +10,6 @@ export function Phonebook({
           pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
           title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
           required
-          value={nameValue}
-          onChange={ChangeHandler}
         />
         <label htmlFor="tel">Number</label>
         <input
@@ -26,8 +19,6 @@ export function Phonebook({
           pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
           title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
           required
-          value={numberValue}
-          onChange={ChangeHandler}
         />
         <button type="submit">Add contact</button>
       </form>
