@@ -1,5 +1,6 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import { FieldStyled } from './FieldStyled.styled';
 
 const Schema = Yup.object().shape({
   name: Yup.string()
@@ -21,15 +22,15 @@ const initialValues = {
   number: '',
 };
 
-const onSubmit = (values, { resetForm }) => {
-  console.log(values);
-  resetForm({
-    values: {
-      name: '',
-      number: '',
-    },
-  });
-};
+// const onSubmit = (values, { resetForm }) => {
+//   console.log(values);
+//   resetForm({
+//     values: {
+//       name: '',
+//       number: '',
+//     },
+//   });
+// };
 
 export function ContactForm(props) {
   return (
@@ -59,19 +60,17 @@ export function ContactForm(props) {
     <Formik
       initialValues={initialValues}
       validationSchema={Schema}
-      onSubmit={onSubmit}
+      onSubmit={props.submitHandler}
     >
-      {() => (
-        <Form>
-          <label htmlFor="name">Name</label>
-          <Field id="name" name="name" />
-          <ErrorMessage name="name">{msg => <div>{msg}</div>}</ErrorMessage>
-          <label htmlFor="number">Number</label>
-          <Field id="number" name="number" />
-          <ErrorMessage name="number">{msg => <div>{msg}</div>}</ErrorMessage>
-          <button type="submit">Submit</button>
-        </Form>
-      )}
+      <Form>
+        <label htmlFor="name">Name</label>
+        <FieldStyled id="name" name="name" />
+        <ErrorMessage name="name" component="p"></ErrorMessage>
+        <label htmlFor="number">Number</label>
+        <Field id="number" name="number" />
+        <ErrorMessage name="number" component="p"></ErrorMessage>
+        <button type="submit">Submit</button>
+      </Form>
     </Formik>
   );
 }

@@ -22,27 +22,47 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  submitHandler = e => {
-    const {
-      target: {
-        elements: {
-          name: { value: nameValue },
-          number: { value: numberValue },
-        },
+  // submitHandler = e => {
+  // const {
+  //   target: {
+  //     elements: {
+  //       name: { value: nameValue },
+  //       number: { value: numberValue },
+  //     },
+  //   },
+  // } = e;
+  // e.preventDefault();
+  // if (this.state.contacts.some(contact => contact.name.includes(nameValue))) {
+  //   alert(`${nameValue} is already in contacts`);
+  //   return;
+  // }
+  // this.setState(prevState => ({
+  //   contacts: [
+  //     { name: nameValue, number: numberValue, id: nanoid() },
+  //     ...prevState.contacts,
+  //   ],
+  // }));
+  // e.target.reset();
+  // };
+  submitHandler = (values, { resetForm }) => {
+    const { name, number } = values;
+    console.log(values);
+    resetForm({
+      values: {
+        name: '',
+        number: '',
       },
-    } = e;
-    e.preventDefault();
-    if (this.state.contacts.some(contact => contact.name.includes(nameValue))) {
-      alert(`${nameValue} is already in contacts`);
+    });
+    if (this.state.contacts.some(contact => contact.name.includes(name))) {
+      alert(`${name} is already in contacts`);
       return;
     }
     this.setState(prevState => ({
       contacts: [
-        { name: nameValue, number: numberValue, id: nanoid() },
+        { name: name, number: number, id: nanoid() },
         ...prevState.contacts,
       ],
     }));
-    e.target.reset();
   };
 
   filterContacts = () => {
