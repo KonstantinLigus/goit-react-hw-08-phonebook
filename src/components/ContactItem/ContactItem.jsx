@@ -1,14 +1,17 @@
+import { Box } from 'components/Box';
+import { ButtonItemSyled } from './ButtonItemStyled.styled';
+
 export function ContactItem({ contacts, deleteBtnHandler }) {
   return contacts.map(contact => {
     const { name, number, id } = contact;
     return (
       <li key={id}>
-        <p>
+        <Box display="inline-block" as="p">
           {name}: {number}
-        </p>
-        <button type="button" id={id} onClick={deleteBtnHandler}>
+        </Box>
+        <ButtonItemSyled type="button" id={id} onClick={deleteBtnHandler}>
           Delete
-        </button>
+        </ButtonItemSyled>
       </li>
     );
   });

@@ -1,5 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Component } from 'react';
+import { Box } from './Box';
 import { ContactForm } from './ContactForm/ContactForm';
 import { ContactList } from './ContactList/ContactList';
 import { Filter } from './Filter/Filter';
@@ -22,28 +23,6 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  // submitHandler = e => {
-  // const {
-  //   target: {
-  //     elements: {
-  //       name: { value: nameValue },
-  //       number: { value: numberValue },
-  //     },
-  //   },
-  // } = e;
-  // e.preventDefault();
-  // if (this.state.contacts.some(contact => contact.name.includes(nameValue))) {
-  //   alert(`${nameValue} is already in contacts`);
-  //   return;
-  // }
-  // this.setState(prevState => ({
-  //   contacts: [
-  //     { name: nameValue, number: numberValue, id: nanoid() },
-  //     ...prevState.contacts,
-  //   ],
-  // }));
-  // e.target.reset();
-  // };
   submitHandler = (values, { resetForm }) => {
     const { name, number } = values;
     console.log(values);
@@ -85,10 +64,16 @@ export class App extends Component {
     const filteredContacts = this.filterContacts();
     return (
       <>
-        <h1>Phonebook</h1>
-        <ContactForm submitHandler={this.submitHandler} />
-        <>
-          <h2>Contacts</h2>
+        <Box p="20px">
+          <Box mb="20px" as="h1">
+            Phonebook
+          </Box>
+          <ContactForm submitHandler={this.submitHandler} />
+        </Box>
+        <Box p="20px">
+          <Box mb="20px" as="h2">
+            Contacts
+          </Box>
           <Filter
             filter={filter}
             changeFilterHandler={this.changeFilterHandler}
@@ -97,7 +82,7 @@ export class App extends Component {
             contacts={filteredContacts}
             deleteBtnHandler={this.deleteBtnHandler}
           />
-        </>
+        </Box>
       </>
     );
   }

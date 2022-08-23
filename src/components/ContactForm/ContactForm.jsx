@@ -1,6 +1,9 @@
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { FieldStyled } from './FieldStyled.styled';
+import { LabelStyled } from './LabelStyled.styled';
+import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
+import { ButtonSyled } from './ButtonStyled.styled';
 
 const Schema = Yup.object().shape({
   name: Yup.string()
@@ -22,54 +25,21 @@ const initialValues = {
   number: '',
 };
 
-// const onSubmit = (values, { resetForm }) => {
-//   console.log(values);
-//   resetForm({
-//     values: {
-//       name: '',
-//       number: '',
-//     },
-//   });
-// };
-
 export function ContactForm(props) {
   return (
-    // <form
-    //   onSubmit={e => {
-    //     e.preventDefault();
-    //     console.log(e.target.elements.name.value);
-    //     console.log(e.target.elements.number.value);
-    //   }}
-    // >
-    //   <input
-    //     type="text"
-    //     name="name"
-    //     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-    //     title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-    //     required
-    //   />
-    //   <input
-    //     type="tel"
-    //     name="number"
-    //     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-    //     title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-    //     required
-    //   />
-    //   <button type="submit">Submit</button>
-    // </form>
     <Formik
       initialValues={initialValues}
       validationSchema={Schema}
       onSubmit={props.submitHandler}
     >
       <Form>
-        <label htmlFor="name">Name</label>
-        <FieldStyled id="name" name="name" />
-        <ErrorMessage name="name" component="p"></ErrorMessage>
-        <label htmlFor="number">Number</label>
-        <Field id="number" name="number" />
-        <ErrorMessage name="number" component="p"></ErrorMessage>
-        <button type="submit">Submit</button>
+        <LabelStyled htmlFor="name">Name</LabelStyled>
+        <FieldStyled className="Field_mg" id="name" name="name" />
+        <ErrorMessageStyled name="name" />
+        <LabelStyled htmlFor="number">Number</LabelStyled>
+        <FieldStyled id="number" name="number" />
+        <ErrorMessageStyled name="number" />
+        <ButtonSyled type="submit">Add contact</ButtonSyled>
       </Form>
     </Formik>
   );
