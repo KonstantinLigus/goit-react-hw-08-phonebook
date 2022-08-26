@@ -23,24 +23,14 @@ export class App extends Component {
     this.setState({ [name]: value });
   };
 
-  submitHandler = (values, { resetForm }) => {
-    const { name, number } = values;
-    console.log(values);
-    resetForm({
-      values: {
-        name: '',
-        number: '',
-      },
-    });
+  submitHandler = (name, number) => {
     if (this.state.contacts.some(contact => contact.name.includes(name))) {
       alert(`${name} is already in contacts`);
       return;
     }
+
     this.setState(prevState => ({
-      contacts: [
-        { name: name, number: number, id: nanoid() },
-        ...prevState.contacts,
-      ],
+      contacts: [{ name, number, id: nanoid() }, ...prevState.contacts],
     }));
   };
 

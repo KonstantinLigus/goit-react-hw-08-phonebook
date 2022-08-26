@@ -26,11 +26,22 @@ const initialValues = {
 };
 
 export function ContactForm(props) {
+  function submitHandler(values, actions) {
+    const { name, number } = values;
+    actions.resetForm({
+      values: {
+        name: '',
+        number: '',
+      },
+    });
+    props.submitHandler(name, number);
+  }
+
   return (
     <Formik
       initialValues={initialValues}
       validationSchema={Schema}
-      onSubmit={props.submitHandler}
+      onSubmit={submitHandler}
     >
       <Form>
         <LabelStyled htmlFor="name">Name</LabelStyled>
