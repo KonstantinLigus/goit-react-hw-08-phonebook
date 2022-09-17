@@ -9,7 +9,7 @@ const initValue = () => {
   const contactsLocalStorage = localStorage.getItem('contacts');
   if (
     contactsLocalStorage === '' ||
-    JSON.parse(contactsLocalStorage).length === 0
+    JSON.parse(contactsLocalStorage)===null
   ) {
     return [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
