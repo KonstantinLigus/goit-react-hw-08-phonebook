@@ -4,6 +4,9 @@ import { FieldStyled } from './FieldStyled.styled';
 import { LabelStyled } from './LabelStyled.styled';
 import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
 import { ButtonSyled } from './ButtonStyled.styled';
+import { useDispatch } from 'react-redux';
+import { addContact } from 'reducer/actions';
+import { nanoid } from '@reduxjs/toolkit';
 
 const Schema = Yup.object().shape({
   name: Yup.string()
@@ -25,7 +28,8 @@ const initialValues = {
   number: '',
 };
 
-export function ContactForm(props) {
+export function ContactForm() {
+  const dispatch = useDispatch();
   function submitHandler(values, actions) {
     const { name, number } = values;
     actions.resetForm({
@@ -34,7 +38,7 @@ export function ContactForm(props) {
         number: '',
       },
     });
-    props.submitHandler(name, number);
+    dispatch(addContact({ name, number, id: nanoid() }));
   }
 
   return (
