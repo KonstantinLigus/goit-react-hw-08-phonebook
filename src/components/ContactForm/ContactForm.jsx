@@ -5,7 +5,7 @@ import { LabelStyled } from './LabelStyled.styled';
 import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
 import { ButtonSyled } from './ButtonStyled.styled';
 import { useDispatch } from 'react-redux';
-import { addContact } from 'reducer/actions';
+import { addContact } from 'redux/actions';
 import { nanoid } from '@reduxjs/toolkit';
 
 const Schema = Yup.object().shape({

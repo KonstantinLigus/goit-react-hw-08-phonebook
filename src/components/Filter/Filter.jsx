@@ -1,7 +1,7 @@
 import { Box } from 'components/Box';
 import { useDispatch, useSelector } from 'react-redux';
-import { filter } from 'reducer/actions';
-import { getFilter } from 'reducer/selectors';
+import { filter } from 'redux/actions';
+import { getFilter } from 'redux/selectors';
 import { FilterStyled } from './FilterStyled.styled';
 
 export function Filter() {
