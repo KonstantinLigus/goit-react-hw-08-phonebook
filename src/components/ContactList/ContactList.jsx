@@ -1,25 +1,45 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
+import { deleteContact, fetchContacts } from 'redux/operations';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'redux/actions';
-import { getContacts, getFilter } from 'redux/selectors';
+import {
+  selectContacts,
+  selectError,
+  selectFilter,
+  selectIsLoading,
+} from 'redux/selectors';
 
 export function ContactList() {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilter);
+  const error = useSelector(selectError);
+  const isLoading = useSelector(selectIsLoading);
+  const contacts = useSelector(selectContacts);
+  const filter = useSelector(selectFilter);
   const filterToLowerCase = filter.toLowerCase();
   const filterContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filterToLowerCase)
   );
   const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   function deleteBtnHandler(e) {
     dispatch(deleteContact(e.target.id));
   }
   return (
-    <ul>
-      <ContactItem
-        contacts={filterContacts}
-        deleteBtnHandler={deleteBtnHandler}
-      />
-    </ul>
+    <>
+      {isLoading && <p>Loading...</p>}
+      {!error && (
+        <ul>
+          {filterContacts.map(contact => (
+            <ContactItem
+              key={contact.id}
+              contact={contact}
+              deleteBtnHandler={deleteBtnHandler}
+            />
+          ))}
+        </ul>
+      )}
+      {contacts.length === 0 && <p>There is empty here</p>}
+    </>
   );
 }

@@ -1,11 +1,9 @@
 import { Box } from 'components/Box';
-import { useDispatch, useSelector } from 'react-redux';
-import { filter } from 'redux/actions';
-import { getFilter } from 'redux/selectors';
+import { useDispatch } from 'react-redux';
+import { filter } from 'redux/filterSlice';
 import { FilterStyled } from './FilterStyled.styled';
 
 export function Filter() {
-  const filterValue = useSelector(getFilter);
   const dispatch = useDispatch();
   function changeFilterHandler(e) {
     dispatch(filter(e.target.value));
@@ -19,7 +17,6 @@ export function Filter() {
         id="filter"
         type="text"
         name="filter"
-        value={filterValue}
         onChange={changeFilterHandler}
       />
     </>

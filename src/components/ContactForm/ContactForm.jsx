@@ -4,9 +4,11 @@ import { FieldStyled } from './FieldStyled.styled';
 import { LabelStyled } from './LabelStyled.styled';
 import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
 import { ButtonSyled } from './ButtonStyled.styled';
-import { useDispatch } from 'react-redux';
-import { addContact } from 'redux/actions';
-import { nanoid } from '@reduxjs/toolkit';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/operations';
+import { selectContacts } from 'redux/selectors';
+// import { addContact } from 'redux/actions';
+// import { nanoid } from '@reduxjs/toolkit';
 
 const Schema = Yup.object().shape({
   name: Yup.string()
@@ -15,7 +17,7 @@ const Schema = Yup.object().shape({
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     ),
-  number: Yup.string()
+  phone: Yup.string()
     .required('Required')
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
@@ -25,20 +27,25 @@ const Schema = Yup.object().shape({
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export function ContactForm() {
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
   function submitHandler(values, actions) {
-    const { name, number } = values;
+    const { name, phone } = values;
     actions.resetForm({
       values: {
         name: '',
-        number: '',
+        phone: '',
       },
     });
-    dispatch(addContact({ name, number, id: nanoid() }));
+    if (contacts.some(contact => contact.name.includes(name))) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
+    dispatch(addContact({ name, phone }));
   }
 
   return (
@@ -51,9 +58,9 @@ export function ContactForm() {
         <LabelStyled htmlFor="name">Name</LabelStyled>
         <FieldStyled className="Field_mg" id="name" name="name" />
         <ErrorMessageStyled name="name" />
-        <LabelStyled htmlFor="number">Number</LabelStyled>
-        <FieldStyled id="number" name="number" />
-        <ErrorMessageStyled name="number" />
+        <LabelStyled htmlFor="phone">Phone</LabelStyled>
+        <FieldStyled id="phone" name="phone" />
+        <ErrorMessageStyled name="phone" />
         <ButtonSyled type="submit">Add contact</ButtonSyled>
       </Form>
     </Formik>
