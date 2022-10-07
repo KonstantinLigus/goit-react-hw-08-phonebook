@@ -1,5 +1,5 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
-import { deleteContact, fetchContacts } from 'redux/operations';
+import { deleteContact, fetchContacts } from 'redux/contacts/operations';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,7 +7,7 @@ import {
   selectError,
   selectFilter,
   selectIsLoading,
-} from 'redux/selectors';
+} from 'redux/contacts/selectors';
 
 export function ContactsList() {
   const error = useSelector(selectError);
@@ -19,9 +19,9 @@ export function ContactsList() {
     contact.name.toLowerCase().includes(filterToLowerCase)
   );
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchContacts());
+  // }, [dispatch]);
   function deleteBtnHandler(e) {
     dispatch(deleteContact(e.target.id));
   }

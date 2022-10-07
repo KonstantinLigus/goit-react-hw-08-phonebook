@@ -2,9 +2,19 @@ import { NavLink } from 'react-router-dom';
 
 export const Navigation = () => (
   <nav>
-    <NavLink to={'/'}>Home</NavLink>
-    <NavLink to={'/register'}>Register</NavLink>
-    <NavLink to={'/login'}>LogIn</NavLink>
-    <NavLink to={'/contacts'}>Contacts</NavLink>
+    <ul>
+      <li>
+        <NavLink to={'/'}>Home</NavLink>
+      </li>
+      <li>
+        <NavLink to={'register'}>Register</NavLink>
+      </li>
+      <li>
+        <NavLink to={'login'}>LogIn</NavLink>
+      </li>
+      <li>
+        <NavLink to={'contacts'}>Contacts</NavLink>
+      </li>
+    </ul>
   </nav>
 );

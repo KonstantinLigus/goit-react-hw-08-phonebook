@@ -1,6 +1,9 @@
 import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { logIn } from 'redux/auth/authSlice';
 
 export const LoginForm = () => {
+  const dispatch = useDispatch();
   const initialValues = {
     email: '',
     password: '',
@@ -14,6 +17,7 @@ export const LoginForm = () => {
         password: '',
       },
     });
+    dispatch(logIn({ email, password }));
   }
 
   return (
@@ -27,7 +31,7 @@ export const LoginForm = () => {
           Password:
           <Field type="password" name="password" />
         </label>
-        <button type="submit">Register</button>
+        <button type="submit">Log In</button>
       </Form>
     </Formik>
   );

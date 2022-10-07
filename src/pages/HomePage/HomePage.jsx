@@ -1,1 +1,1 @@
-export const Home = () => <p>Welcome to the Contacts' site!</p>;
+export const HomePage = () => <h1>Welcome to the Contacts!</h1>;

@@ -1,3 +1,3 @@
-import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { LoginForm } from 'components/LogInForm/LogInForm';
 
-export const LogInPage = () => <RegisterForm />;
+export const LogInPage = () => <LoginForm />;

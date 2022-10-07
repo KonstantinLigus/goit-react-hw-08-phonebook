@@ -1,21 +1,25 @@
 import { Field, Form, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/authSlice';
 
 export const RegisterForm = () => {
+  const dispatch = useDispatch();
   const initialValues = {
-    login: '',
+    name: '',
     email: '',
     password: '',
   };
 
   function submitHandler(values, actions) {
-    const { email, login, password } = values;
+    const { email, name, password } = values;
     actions.resetForm({
       values: {
-        login: '',
+        name: '',
         email: '',
         password: '',
       },
     });
+    dispatch(register({ name, email, password }));
   }
 
   return (
@@ -23,7 +27,7 @@ export const RegisterForm = () => {
       <Form>
         <label>
           Username:
-          <Field type="text" name="login" />
+          <Field type="text" name="name" />
         </label>
         <label>
           Email:
