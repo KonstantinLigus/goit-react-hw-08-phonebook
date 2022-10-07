@@ -9,7 +9,7 @@ import {
   selectIsLoading,
 } from 'redux/selectors';
 
-export function ContactList() {
+export function ContactsList() {
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const contacts = useSelector(selectContacts);

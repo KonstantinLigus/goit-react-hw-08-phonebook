@@ -1,24 +1,21 @@
-import { Box } from './Box';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
+import { ContactsPage } from 'pages/ContactsPage/ContactsPage';
+import { Home } from 'pages/HomePage/HomePage';
+import { LogInPage } from 'pages/LogInPage/LogInPage';
+import { RegistrationPage } from 'pages/RegistretionPage/RegistretionPage';
+import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout';
 
 export function App() {
   return (
     <>
-      <Box p="20px">
-        <Box mb="20px" as="h1">
-          Phonebook
-        </Box>
-        <ContactForm />
-      </Box>
-      <Box p="20px">
-        <Box mb="20px" as="h2">
-          Contacts
-        </Box>
-        <Filter />
-        <ContactList />
-      </Box>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />} />
+          <Route path="register" element={<RegistrationPage />} />
+          <Route path="login" element={<LogInPage />} />
+          <Route path="login" element={<ContactsPage />} />
+        </Route>
+      </Routes>
     </>
   );
 }

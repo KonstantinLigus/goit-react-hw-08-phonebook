@@ -1,5 +1,6 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
+import { Box } from 'components/Box';
 import { FieldStyled } from './FieldStyled.styled';
 import { LabelStyled } from './LabelStyled.styled';
 import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
@@ -7,8 +8,6 @@ import { ButtonSyled } from './ButtonStyled.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
-// import { addContact } from 'redux/actions';
-// import { nanoid } from '@reduxjs/toolkit';
 
 const Schema = Yup.object().shape({
   name: Yup.string()
@@ -49,20 +48,25 @@ export function ContactForm() {
   }
 
   return (
-    <Formik
-      initialValues={initialValues}
-      validationSchema={Schema}
-      onSubmit={submitHandler}
-    >
-      <Form>
-        <LabelStyled htmlFor="name">Name</LabelStyled>
-        <FieldStyled className="Field_mg" id="name" name="name" />
-        <ErrorMessageStyled name="name" />
-        <LabelStyled htmlFor="phone">Phone</LabelStyled>
-        <FieldStyled id="phone" name="phone" />
-        <ErrorMessageStyled name="phone" />
-        <ButtonSyled type="submit">Add contact</ButtonSyled>
-      </Form>
-    </Formik>
+    <Box p="20px">
+      <Box mb="20px" as="h1">
+        Phonebook
+      </Box>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={Schema}
+        onSubmit={submitHandler}
+      >
+        <Form>
+          <LabelStyled htmlFor="name">Name</LabelStyled>
+          <FieldStyled className="Field_mg" id="name" name="name" />
+          <ErrorMessageStyled name="name" />
+          <LabelStyled htmlFor="phone">Phone</LabelStyled>
+          <FieldStyled id="phone" name="phone" />
+          <ErrorMessageStyled name="phone" />
+          <ButtonSyled type="submit">Add contact</ButtonSyled>
+        </Form>
+      </Formik>
+    </Box>
   );
 }
