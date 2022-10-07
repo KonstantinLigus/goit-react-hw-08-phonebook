@@ -13,7 +13,7 @@ export function App() {
           <Route index element={<Home />} />
           <Route path="register" element={<RegistrationPage />} />
           <Route path="login" element={<LogInPage />} />
-          <Route path="login" element={<ContactsPage />} />
+          <Route path="contacts" element={<ContactsPage />} />
         </Route>
       </Routes>
     </>
