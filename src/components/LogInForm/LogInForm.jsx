@@ -1,6 +1,6 @@
 import { Field, Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { logIn } from 'redux/auth/authSlice';
+import { logIn } from 'redux/auth/authOperations';
 
 export const LoginForm = () => {
   const dispatch = useDispatch();

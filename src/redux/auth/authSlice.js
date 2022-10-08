@@ -1,40 +1,26 @@
-import { createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice } from '@reduxjs/toolkit';
+import { register } from './authOperations';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+const initialState = {
+  user: {
+    name: null,
+    email: null,
+  },
+  token: null,
+  isLoggedIn: false,
+  isRefreshing: false,
+};
 
-const setAuthorizationHeader = token =>
-  (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
-
-const clearAuthtorizationHeader = () =>
-  (axios.defaults.headers.common.Authorization = '');
-
-export const register = createAsyncThunk(
-  'user/register',
-  async (credentials, thunkApi) => {
-    try {
-      const res = await axios.post('/users/signup', credentials);
-      setAuthorizationHeader(res.token);
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const logIn = createAsyncThunk(
-  'user/logIn',
-  async (credentials, thunkApi) => {
-    try {
-      const res = await axios.post('/users/login', credentials);
-      setAuthorizationHeader(res.token);
-    } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
-    }
-  }
-);
-
-export const logOut = createAsyncThunk('user/logOut', async (_, thunkApi) => {
-  try {
-    const res = await axios.post('/users/logout');
-  } catch (error) {}
+const authSlice = createSlice({
+  name: 'auth',
+  initialState,
+  extraRedusers: {
+    [register.fulfilled](state, action) {
+      state.user = action.payload.user;
+      state.token = action.payload.token;
+      state.isLoggedIn = true;
+    },
+  },
 });
+
+export const authReducer = authSlice.reducer;
