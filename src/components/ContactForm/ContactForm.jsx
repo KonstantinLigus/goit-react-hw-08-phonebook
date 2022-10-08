@@ -6,8 +6,8 @@ import { LabelStyled } from './LabelStyled.styled';
 import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
 import { ButtonSyled } from './ButtonStyled.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'redux/contacts/operations';
-import { selectContacts } from 'redux/contacts/selectors';
+import { addContact } from 'redux/contacts/conatactsOperations';
+import { selectContacts } from 'redux/contacts/conatacsSelectors';
 
 const Schema = Yup.object().shape({
   name: Yup.string()

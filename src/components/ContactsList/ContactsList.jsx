@@ -1,5 +1,8 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
-import { deleteContact, fetchContacts } from 'redux/contacts/operations';
+import {
+  deleteContact,
+  fetchContacts,
+} from 'redux/contacts/conatactsOperations';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -7,7 +10,7 @@ import {
   selectError,
   selectFilter,
   selectIsLoading,
-} from 'redux/contacts/selectors';
+} from 'redux/contacts/conatacsSelectors';
 
 export function ContactsList() {
   const error = useSelector(selectError);
