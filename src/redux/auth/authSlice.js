@@ -38,6 +38,9 @@ const authSlice = createSlice({
       state.isRefreshing = false;
       state.user = action.payload;
     },
+    [refreshUser.rejected](state) {
+      state.isRefreshing = false;
+    },
   },
 });
 

@@ -11,6 +11,7 @@ import {
   selectFilter,
   selectIsLoading,
 } from 'redux/contacts/conatacsSelectors';
+import { ContactItemStyled } from 'components/ContactsList/ContactItemStyled.styled';
 
 export function ContactsList() {
   const error = useSelector(selectError);
@@ -22,9 +23,9 @@ export function ContactsList() {
     contact.name.toLowerCase().includes(filterToLowerCase)
   );
   const dispatch = useDispatch();
-  // useEffect(() => {
-  //   dispatch(fetchContacts());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
   function deleteBtnHandler(e) {
     dispatch(deleteContact(e.target.id));
   }
@@ -34,11 +35,12 @@ export function ContactsList() {
       {!error && (
         <ul>
           {filterContacts.map(contact => (
-            <ContactItem
-              key={contact.id}
-              contact={contact}
-              deleteBtnHandler={deleteBtnHandler}
-            />
+            <ContactItemStyled key={contact.id}>
+              <ContactItem
+                contact={contact}
+                deleteBtnHandler={deleteBtnHandler}
+              />
+            </ContactItemStyled>
           ))}
         </ul>
       )}

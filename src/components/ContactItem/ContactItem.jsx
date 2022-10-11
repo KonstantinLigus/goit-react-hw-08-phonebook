@@ -1,19 +1,18 @@
 import { Box } from 'components/Box';
 import { ButtonItemSyled } from './ButtonItemStyled.styled';
-import { ContactItemStyled } from './ContactItemStyled.styled';
 
 export function ContactItem({
-  contact: { name, phone, id },
+  contact: { name, number, id },
   deleteBtnHandler,
 }) {
   return (
-    <ContactItemStyled>
+    <>
       <Box display="inline-block" width={400} as="p">
-        {name}: {phone}
+        {name}: {number}
       </Box>
       <ButtonItemSyled type="button" id={id} onClick={deleteBtnHandler}>
         Delete
       </ButtonItemSyled>
-    </ContactItemStyled>
+    </>
   );
 }

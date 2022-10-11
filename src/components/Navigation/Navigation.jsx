@@ -12,12 +12,16 @@ export const Navigation = () => {
           <li>
             <NavLink to={'/'}>Home</NavLink>
           </li>
-          <li>
-            <NavLink to={'register'}>Register</NavLink>
-          </li>
-          <li>
-            <NavLink to={'login'}>LogIn</NavLink>
-          </li>
+          {!isLoggedIn && (
+            <li>
+              <NavLink to={'register'}>Register</NavLink>
+            </li>
+          )}
+          {!isLoggedIn && (
+            <li>
+              <NavLink to={'login'}>LogIn</NavLink>
+            </li>
+          )}
           {isLoggedIn && (
             <li>
               <NavLink to={'contacts'}>Contacts</NavLink>
