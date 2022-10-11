@@ -11,7 +11,7 @@ export const Navigation = () => {
       <nav>
         <NavigationStyled>
           <li>
-            <NavLinkStyled to={''} end>
+            <NavLinkStyled to="" end>
               Home
             </NavLinkStyled>
           </li>
