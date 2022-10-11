@@ -11,7 +11,9 @@ export const Navigation = () => {
       <nav>
         <NavigationStyled>
           <li>
-            <NavLinkStyled to={''}>Home</NavLinkStyled>
+            <NavLinkStyled to={''} end>
+              Home
+            </NavLinkStyled>
           </li>
           {!isLoggedIn && (
             <li>
