@@ -33,3 +33,6 @@ ul {
   margin: 0;
   list-style: none;
 }
+* {
+  font-weight: 300;
+}

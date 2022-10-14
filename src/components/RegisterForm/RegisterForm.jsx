@@ -1,6 +1,9 @@
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
+import { FieldStyled } from 'components/commonStyles/FieldStyled.styled';
+import { LabelStyled } from 'components/commonStyles/LabelStyled.styled';
 import { register } from 'redux/auth/authOperations';
+import { RegisterBtn } from './RegisterFormStyled.styled';
 
 export const RegisterForm = () => {
   const dispatch = useDispatch();
@@ -25,19 +28,23 @@ export const RegisterForm = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={submitHandler}>
       <Form>
-        <label>
-          Username:
-          <Field type="text" name="name" />
-        </label>
-        <label>
-          Email:
-          <Field type="email" name="email" />
-        </label>
-        <label>
-          Password:
-          <Field type="password" name="password" />
-        </label>
-        <button type="submit">Register</button>
+        <LabelStyled htmlFor="name">Username:</LabelStyled>
+        <FieldStyled className="Field_mg" id="name" type="text" name="name" />
+        <LabelStyled htmlFor="email">Email:</LabelStyled>
+        <FieldStyled
+          className="Field_mg"
+          id="email"
+          type="email"
+          name="email"
+        />
+        <LabelStyled htmlFor="password">Password:</LabelStyled>
+        <FieldStyled
+          className="Field_mg"
+          id="password"
+          type="password"
+          name="password"
+        />
+        <RegisterBtn type="submit">Register</RegisterBtn>
       </Form>
     </Formik>
   );

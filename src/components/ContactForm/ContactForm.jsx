@@ -1,8 +1,8 @@
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { Box } from 'components/Box';
-import { FieldStyled } from './FieldStyled.styled';
-import { LabelStyled } from './LabelStyled.styled';
+import { FieldStyled } from '../commonStyles/FieldStyled.styled';
+import { LabelStyled } from '../commonStyles/LabelStyled.styled';
 import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
 import { ButtonSyled } from './ButtonStyled.styled';
 import { useDispatch, useSelector } from 'react-redux';
