@@ -16,7 +16,7 @@ const Schema = Yup.object().shape({
       /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
       "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
     ),
-  number: Yup.string()
+  phone: Yup.string()
     .required('Required')
     .matches(
       /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
@@ -26,7 +26,7 @@ const Schema = Yup.object().shape({
 
 const initialValues = {
   name: '',
-  number: '',
+  phone: '',
 };
 
 export function ContactForm() {
@@ -34,18 +34,18 @@ export function ContactForm() {
   const dispatch = useDispatch();
 
   function submitHandler(values, actions) {
-    const { name, number } = values;
+    const { name, phone } = values;
     actions.resetForm({
       values: {
         name: '',
-        number: '',
+        phone: '',
       },
     });
     if (contacts.some(contact => contact.name.includes(name))) {
       alert(`${name} is already in contacts`);
       return;
     }
-    dispatch(addContact({ name, number }));
+    dispatch(addContact({ name, phone }));
   }
 
   return (
@@ -62,9 +62,9 @@ export function ContactForm() {
           <LabelStyled htmlFor="name">Name</LabelStyled>
           <FieldStyled className="Field_mg" id="name" name="name" />
           <ErrorMessageStyled name="name" />
-          <LabelStyled htmlFor="number">Phone</LabelStyled>
-          <FieldStyled id="number" name="number" />
-          <ErrorMessageStyled name="number" />
+          <LabelStyled htmlFor="phone">Phone</LabelStyled>
+          <FieldStyled id="phone" name="phone" />
+          <ErrorMessageStyled name="phone" />
           <ButtonSyled type="submit">Add contact</ButtonSyled>
         </Form>
       </Formik>
