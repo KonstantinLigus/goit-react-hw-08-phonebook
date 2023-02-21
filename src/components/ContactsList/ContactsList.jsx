@@ -19,7 +19,7 @@ export function ContactsList() {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
   const filterToLowerCase = filter.toLowerCase();
-  const filterContacts = contacts.filter(contact =>
+  const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filterToLowerCase)
   );
   const dispatch = useDispatch();
@@ -34,8 +34,8 @@ export function ContactsList() {
       {isLoading && <p>Loading...</p>}
       {!error && (
         <ul>
-          {filterContacts.map(contact => (
-            <ContactItemStyled key={contact.id}>
+          {filteredContacts.map(contact => (
+            <ContactItemStyled key={contact._id}>
               <ContactItem
                 contact={contact}
                 deleteBtnHandler={deleteBtnHandler}

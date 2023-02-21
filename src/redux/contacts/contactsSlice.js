@@ -36,7 +36,7 @@ export const contactsSlice = createSlice({
       return {
         error: null,
         isLoading: false,
-        items: state.items.filter(contact => contact.id !== action.meta.arg),
+        items: action.payload,
       };
     },
     [deleteContact.rejected]: rejected,

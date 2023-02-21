@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
+axios.defaults.baseURL = ' http://localhost:8080/';
 
 const setAuthorizationHeader = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
@@ -61,3 +61,11 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+// user1
+// user1@mail.com
+// user12345
+
+// user2
+// user2@mail.com
+// user22345
