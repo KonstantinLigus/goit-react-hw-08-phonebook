@@ -33,11 +33,9 @@ export const contactsSlice = createSlice({
     },
     [deleteContact.pending]: pending,
     [deleteContact.fulfilled](state, action) {
-      return {
-        error: null,
-        isLoading: false,
-        items: action.payload,
-      };
+      state.error = null;
+      state.isLoading = false;
+      state.items = action.payload;
     },
     [deleteContact.rejected]: rejected,
     [addContact.pending]: pending,

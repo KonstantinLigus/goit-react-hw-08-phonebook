@@ -21,7 +21,7 @@ export const deleteContact = createAsyncThunk(
     try {
       const response = await axios.delete(`/contacts/${contactId}`);
       const filteredItems = getState().contacts.items.filter(
-        contact => contact.id !== response.data.contact._id
+        contact => contact._id !== response.data.deletedContact._id
       );
       return filteredItems;
     } catch (error) {
@@ -35,7 +35,7 @@ export const addContact = createAsyncThunk(
   async (contact, { rejectWithValue }) => {
     try {
       const response = await axios.post('/contacts', contact);
-      return response.data;
+      return response.data.createdContact;
     } catch (error) {
       return rejectWithValue(error);
     }

@@ -61,11 +61,3 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
-
-// user1
-// user1@mail.com
-// user12345
-
-// user2
-// user2@mail.com
-// user22345
