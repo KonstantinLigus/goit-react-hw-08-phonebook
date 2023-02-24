@@ -1,5 +1,49 @@
 import styled from 'styled-components';
 
+export const UserSubscriptionAndLogoutWrap = styled.div`
+  display: flex;
+`;
+
+export const UserSubscriptionWrap = styled.div`
+  display: inline;
+  padding: 0 10px;
+`;
+
+export const SubscriptionEnumWrap = styled.div`
+  margin-top: 5px;
+  height: 55px;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+`;
+
+export const SubscriptionChoice = styled.p`
+  height: 50%;
+  padding: 0 5px;
+  cursor: pointer;
+  :hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(0, 0, 255);
+  }
+`;
+
+export const SubscriptionChange = styled.p`
+  font-size: 14px;
+  color: rgb(0, 0, 255);
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
+export const Subscription = styled.p`
+  height: 25px;
+  line-height: 20px;
+  font-weight: 400;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  border-color: rgb(0, 0, 255);
+`;
+
 export const LogOutBtn = styled.button`
   margin-left: 20px;
   height: 30px;
