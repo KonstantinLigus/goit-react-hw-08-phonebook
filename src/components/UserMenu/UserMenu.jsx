@@ -1,44 +1,58 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { logOut } from 'redux/auth/authOperations';
+import { changeUserSubscription } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
 
 import {
-  LogOutBtn,
   Subscription,
   SubscriptionChange,
   SubscriptionChoice,
   SubscriptionEnumWrap,
-  UserSubscriptionAndLogoutWrap,
+  UserInfoWrap,
   UserSubscriptionWrap,
 } from './UserMenuStyled.styled';
 
-export const UserMenu = () => {
-  const [isSubscriptionEnumShow, setIsSubscriptionEnumShow] = useState(false);
-  const user = useSelector(selectUser);
+export const UserInfo = () => {
   const dispatch = useDispatch();
-  const onLogOutClick = () => dispatch(logOut());
+  const user = useSelector(selectUser);
+  const [isSubscriptionEnumShow, setIsSubscriptionEnumShow] = useState(false);
+
+  const onSubscriptionChangeClick = () => {
+    setIsSubscriptionEnumShow(!isSubscriptionEnumShow);
+  };
+
+  const onSubscriptionChoiceClick = e => {
+    dispatch(changeUserSubscription({ subscription: e.target.innerText }));
+  };
+
   return (
-    <UserSubscriptionAndLogoutWrap>
+    <UserInfoWrap>
       <p>Welcome, {user.name}</p>
       <UserSubscriptionWrap>
         <Subscription>{user.subscription}</Subscription>
-        <SubscriptionChange>Change</SubscriptionChange>
+        <SubscriptionChange onClick={onSubscriptionChangeClick}>
+          Change
+        </SubscriptionChange>
         {isSubscriptionEnumShow && (
           <SubscriptionEnumWrap>
             {user.subscription !== 'starter' && (
-              <SubscriptionChoice>starter</SubscriptionChoice>
+              <SubscriptionChoice onClick={onSubscriptionChoiceClick}>
+                starter
+              </SubscriptionChoice>
             )}
             {user.subscription !== 'pro' && (
-              <SubscriptionChoice>pro</SubscriptionChoice>
+              <SubscriptionChoice onClick={onSubscriptionChoiceClick}>
+                pro
+              </SubscriptionChoice>
             )}
             {user.subscription !== 'business' && (
-              <SubscriptionChoice>business</SubscriptionChoice>
+              <SubscriptionChoice onClick={onSubscriptionChoiceClick}>
+                business
+              </SubscriptionChoice>
             )}
           </SubscriptionEnumWrap>
         )}
       </UserSubscriptionWrap>
-      <LogOutBtn onClick={onLogOutClick}>Log Out</LogOutBtn>
-    </UserSubscriptionAndLogoutWrap>
+    </UserInfoWrap>
   );
 };

@@ -61,3 +61,11 @@ export const refreshUser = createAsyncThunk(
     }
   }
 );
+
+export const changeUserSubscription = createAsyncThunk(
+  'user/subscription',
+  async credentials => {
+    const res = await axios.post('/users/subscription', credentials);
+    return res.data.subscription;
+  }
+);

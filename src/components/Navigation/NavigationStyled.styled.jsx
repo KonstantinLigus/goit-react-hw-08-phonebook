@@ -6,11 +6,14 @@ export const NavigationStyled = styled.ul`
   height: 105px;
   & * {
     text-align: center;
-    text-decoration: none;
+    /* text-decoration: none; */
     font-size: 20px;
     font-weight: 300;
   }
-  & li:not(:first-child) {
+`;
+
+export const MenuItem = styled.li`
+  :not(:first-child) {
     margin-left: 20px;
   }
 `;

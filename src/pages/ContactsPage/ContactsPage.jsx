@@ -3,7 +3,7 @@ import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactsList } from 'components/ContactsList/ContactsList';
 import { Filter } from 'components/Filter/Filter';
 
-export const ContactsPage = () => (
+const ContactsPage = () => (
   <>
     <ContactForm />
     <Box p="20px">
@@ -15,3 +15,5 @@ export const ContactsPage = () => (
     </Box>
   </>
 );
+
+export default ContactsPage;

@@ -1,24 +1,24 @@
 import styled from 'styled-components';
 
-export const UserSubscriptionAndLogoutWrap = styled.div`
+export const UserInfoWrap = styled.div`
   display: flex;
 `;
 
 export const UserSubscriptionWrap = styled.div`
   display: inline;
-  padding: 0 10px;
+  margin-left: 10px;
 `;
 
-export const SubscriptionEnumWrap = styled.div`
+export const SubscriptionEnumWrap = styled.ul`
   margin-top: 5px;
-  height: 55px;
   border-style: solid;
   border-width: 1px;
   border-radius: 5px;
+  //
 `;
 
-export const SubscriptionChoice = styled.p`
-  height: 50%;
+export const SubscriptionChoice = styled.li`
+  height: 25px;
   padding: 0 5px;
   cursor: pointer;
   :hover {
@@ -36,6 +36,7 @@ export const SubscriptionChange = styled.p`
 
 export const Subscription = styled.p`
   height: 25px;
+  width: 80px;
   line-height: 20px;
   font-weight: 400;
   border-style: solid;
@@ -45,7 +46,6 @@ export const Subscription = styled.p`
 `;
 
 export const LogOutBtn = styled.button`
-  margin-left: 20px;
   height: 30px;
   font-size: 15px;
   background-color: rgb(161, 200, 231);
