@@ -1,28 +1,13 @@
 import { Formik, Form } from 'formik';
-import * as Yup from 'yup';
 import { Box } from 'components/Box';
 import { FieldStyled } from '../commonStyles/FieldStyled.styled';
 import { LabelStyled } from '../commonStyles/LabelStyled.styled';
-import { ErrorMessageStyled } from './ErrorMessageStyled.styled';
-import { ButtonSyled } from './ButtonStyled.styled';
+import { ErrorMessageStyled } from '../commonStyles/ErrorMessageStyled.styled';
+import { ButtonSyled, FormTitle } from './ContactFormStyled.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/conatactsOperations';
 import { selectContacts } from 'redux/contacts/conatacsSelectors';
-
-const Schema = Yup.object().shape({
-  name: Yup.string()
-    .required('Required')
-    .matches(
-      /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
-      "Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-    ),
-  phone: Yup.string()
-    .required('Required')
-    .matches(
-      /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
-      'Phone number must be digits and can contain spaces, dashes, parentheses and can start with +'
-    ),
-});
+import { Schema } from 'schema';
 
 const initialValues = {
   name: '',
@@ -50,9 +35,7 @@ export function ContactForm() {
 
   return (
     <Box p="20px">
-      <Box mb="20px" as="h1">
-        Phonebook
-      </Box>
+      <FormTitle>Phonebook</FormTitle>
       <Formik
         initialValues={initialValues}
         validationSchema={Schema}

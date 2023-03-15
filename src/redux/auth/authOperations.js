@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-axios.defaults.baseURL = ' http://localhost:8080/';
+const USERS_BASE_URL = 'http://localhost:8080';
 
 const setAuthorizationHeader = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);
@@ -13,7 +13,10 @@ export const register = createAsyncThunk(
   'user/register',
   async (credentials, thunkApi) => {
     try {
-      const res = await axios.post('/users/signup', credentials);
+      const res = await axios.post(
+        `${USERS_BASE_URL}/users/signup`,
+        credentials
+      );
       setAuthorizationHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -26,7 +29,10 @@ export const logIn = createAsyncThunk(
   'user/logIn',
   async (credentials, thunkApi) => {
     try {
-      const res = await axios.post('/users/login', credentials);
+      const res = await axios.post(
+        `${USERS_BASE_URL}/users/login`,
+        credentials
+      );
       setAuthorizationHeader(res.data.token);
       return res.data;
     } catch (error) {
@@ -37,7 +43,7 @@ export const logIn = createAsyncThunk(
 
 export const logOut = createAsyncThunk('user/logOut', async (_, thunkApi) => {
   try {
-    await axios.post('/users/logout');
+    await axios.post(`${USERS_BASE_URL}/users/logout`);
     clearAuthtorizationHeader();
   } catch (error) {
     return thunkApi.rejectWithValue(error.message);
@@ -54,7 +60,7 @@ export const refreshUser = createAsyncThunk(
     }
     try {
       setAuthorizationHeader(persistedToken);
-      const res = await axios.get('/users/current');
+      const res = await axios.get(`${USERS_BASE_URL}/users/current`);
       return res.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -65,7 +71,10 @@ export const refreshUser = createAsyncThunk(
 export const changeUserSubscription = createAsyncThunk(
   'user/subscription',
   async credentials => {
-    const res = await axios.post('/users/subscription', credentials);
+    const res = await axios.post(
+      `${USERS_BASE_URL}/users/subscription`,
+      credentials
+    );
     return res.data.subscription;
   }
 );

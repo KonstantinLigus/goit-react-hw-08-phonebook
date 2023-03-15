@@ -1,5 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { logIn, logOut, refreshUser, register } from './authOperations';
+import {
+  changeUserSubscription,
+  logIn,
+  logOut,
+  refreshUser,
+  register,
+} from './authOperations';
 
 const initialState = {
   user: {
@@ -41,6 +47,9 @@ const authSlice = createSlice({
     },
     [refreshUser.rejected](state) {
       state.isRefreshing = false;
+    },
+    [changeUserSubscription.fulfilled](state, action) {
+      state.user.subscription = action.payload;
     },
   },
 });

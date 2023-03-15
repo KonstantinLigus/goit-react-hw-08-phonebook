@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUserSubscription } from 'redux/auth/authOperations';
 import { selectUser } from 'redux/auth/authSelectors';
@@ -10,14 +10,24 @@ import {
   SubscriptionEnumWrap,
   UserInfoWrap,
   UserSubscriptionWrap,
-} from './UserMenuStyled.styled';
+} from './UserInfoStyled.styled';
 
 export const UserInfo = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [isSubscriptionEnumShow, setIsSubscriptionEnumShow] = useState(false);
+  useEffect(() => {
+    const onDocumentClick = e => {
+      setIsSubscriptionEnumShow(false);
+    };
+    document.addEventListener('click', onDocumentClick);
+    return () => {
+      document.removeEventListener('click', onDocumentClick);
+    };
+  }, []);
 
-  const onSubscriptionChangeClick = () => {
+  const onSubscriptionChangeClick = e => {
+    e.stopPropagation();
     setIsSubscriptionEnumShow(!isSubscriptionEnumShow);
   };
 

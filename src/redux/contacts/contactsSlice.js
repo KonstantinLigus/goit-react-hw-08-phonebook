@@ -3,6 +3,7 @@ import {
   addContact,
   deleteContact,
   fetchContacts,
+  updateContact,
 } from './conatactsOperations';
 
 const initialState = {
@@ -44,6 +45,11 @@ export const contactsSlice = createSlice({
       state.isLoading = false;
     },
     [addContact.rejected]: rejected,
+    [updateContact.pending]: pending,
+    [updateContact.fulfilled](state, action) {
+      state.items = action.payload;
+      state.isLoading = false;
+    },
   },
 });
 export const contactsReducer = contactsSlice.reducer;

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperations';
-import { UserInfo } from 'components/UserMenu/UserMenu';
-import { LogOutBtn } from 'components/UserMenu/UserMenuStyled.styled';
+import { UserInfo } from 'components/UserInfo/UserInfo';
+import { LogOutBtn } from 'components/UserInfo/UserInfoStyled.styled';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { MenuItem, NavigationStyled } from './NavigationStyled.styled';
 import { NavLinkStyled } from './NavLinkStyled.stled';

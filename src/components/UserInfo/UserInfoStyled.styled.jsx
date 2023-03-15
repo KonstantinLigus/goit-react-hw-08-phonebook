@@ -48,6 +48,7 @@ export const Subscription = styled.p`
 export const LogOutBtn = styled.button`
   height: 30px;
   font-size: 15px;
+  cursor: pointer;
   background-color: rgb(161, 200, 231);
   border-color: rgb(161, 200, 231);
 `;

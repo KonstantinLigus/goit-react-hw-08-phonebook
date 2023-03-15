@@ -11,7 +11,7 @@ import {
   selectFilter,
   selectIsLoading,
 } from 'redux/contacts/conatacsSelectors';
-import { ContactItemStyled } from 'components/ContactsList/ContactItemStyled.styled';
+import { ContactItemStyled } from 'components/ContactsList/ContactsListStyled.styled';
 
 export function ContactsList() {
   const error = useSelector(selectError);

@@ -1,21 +1,17 @@
 import { useEffect } from 'react';
-// import { lazy } from 'react';
+import { lazy } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import ContactsPage from 'pages/ContactsPage/ContactsPage';
-import HomePage from 'pages/HomePage/HomePage';
-import LogInPage from 'pages/LogInPage/LogInPage';
-import RegistrationPage from 'pages/RegistretionPage/RegistretionPage';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/authOperations';
 import { selectIsLoggedIn, selectIsRefresh } from 'redux/auth/authSelectors';
 import { SharedLayout } from './SharedLayout';
 
-// const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
-// const RegistrationPage = lazy(() =>
-//   import('../pages/RegistretionPage/RegistretionPage')
-// );
-// const LogInPage = lazy(() => import('../pages/LogInPage/LogInPage'));
-// const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
+const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
+const RegistrationPage = lazy(() =>
+  import('../pages/RegistretionPage/RegistretionPage')
+);
+const LogInPage = lazy(() => import('../pages/LogInPage/LogInPage'));
+const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
 
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);

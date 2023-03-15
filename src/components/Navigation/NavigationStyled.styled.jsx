@@ -6,13 +6,12 @@ export const NavigationStyled = styled.ul`
   height: 105px;
   & * {
     text-align: center;
-    /* text-decoration: none; */
-    font-size: 20px;
     font-weight: 300;
   }
 `;
 
 export const MenuItem = styled.li`
+  font-size: 20px;
   :not(:first-child) {
     margin-left: 20px;
   }

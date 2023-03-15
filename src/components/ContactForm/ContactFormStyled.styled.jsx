@@ -7,3 +7,8 @@ export const ButtonSyled = styled.button`
   background-color: rgb(0, 128, 0);
   border-color: rgb(0, 128, 0);
 `;
+
+export const FormTitle = styled.h1`
+  margin-bottom: 20px;
+  font-weight: 300;
+`;
