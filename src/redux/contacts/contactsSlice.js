@@ -3,6 +3,7 @@ import {
   addContact,
   deleteContact,
   fetchContacts,
+  fetchFavoriteContacts,
   updateContact,
 } from './conatactsOperations';
 
@@ -47,6 +48,11 @@ export const contactsSlice = createSlice({
     [addContact.rejected]: rejected,
     [updateContact.pending]: pending,
     [updateContact.fulfilled](state, action) {
+      state.items = action.payload;
+      state.isLoading = false;
+    },
+    [fetchFavoriteContacts.pending]: pending,
+    [fetchFavoriteContacts.fulfilled](state, action) {
       state.items = action.payload;
       state.isLoading = false;
     },

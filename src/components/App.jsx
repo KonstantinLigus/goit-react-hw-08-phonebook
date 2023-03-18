@@ -12,6 +12,7 @@ const RegistrationPage = lazy(() =>
 );
 const LogInPage = lazy(() => import('../pages/LogInPage/LogInPage'));
 const ContactsPage = lazy(() => import('../pages/ContactsPage/ContactsPage'));
+const FavoritePage = lazy(() => import('../pages/FavoritePage/FavoritePage'));
 
 export const App = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -39,6 +40,10 @@ export const App = () => {
         <Route
           path="contacts"
           element={isLoggedIn ? <ContactsPage /> : <Navigate to={'/login'} />}
+        />
+        <Route
+          path="favorite"
+          element={isLoggedIn ? <FavoritePage /> : <Navigate to={'/login'} />}
         />
       </Route>
     </Routes>

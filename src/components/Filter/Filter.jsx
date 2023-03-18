@@ -1,12 +1,17 @@
 import { Box } from 'components/Box';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContacts } from 'redux/contacts/conatacsSelectors';
 import { filter } from 'redux/filterSlice';
 import { FilterStyled } from './FilterStyled.styled';
 
 export function Filter() {
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
   function changeFilterHandler(e) {
     dispatch(filter(e.target.value));
+  }
+  if (contacts.length === 0) {
+    return null;
   }
   return (
     <>

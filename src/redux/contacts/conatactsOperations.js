@@ -15,6 +15,20 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
+export const fetchFavoriteContacts = createAsyncThunk(
+  'contacts/fetchFavorites',
+  async (_, { rejectWithValue }) => {
+    try {
+      const response = await axios.get(
+        `${CONTACTS_BASE_URL}/contacts/fetch/favorites`
+      );
+      return response.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const deleteContact = createAsyncThunk(
   'contacts/delete',
   async (contactId, { rejectWithValue, getState }) => {

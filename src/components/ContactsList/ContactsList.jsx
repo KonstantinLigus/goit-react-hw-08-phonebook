@@ -1,10 +1,5 @@
 import { ContactItem } from 'components/ContactItem/ContactItem';
-import {
-  deleteContact,
-  fetchContacts,
-} from 'redux/contacts/conatactsOperations';
-import { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import {
   selectContacts,
   selectError,
@@ -13,22 +8,17 @@ import {
 } from 'redux/contacts/conatacsSelectors';
 import { ContactItemStyled } from 'components/ContactsList/ContactsListStyled.styled';
 
-export function ContactsList() {
+export const ContactsList = props => {
   const error = useSelector(selectError);
   const isLoading = useSelector(selectIsLoading);
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
+
   const filterToLowerCase = filter.toLowerCase();
   const filteredContacts = contacts.filter(contact =>
     contact.name.toLowerCase().includes(filterToLowerCase)
   );
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-  function deleteBtnHandler(e) {
-    dispatch(deleteContact(e.target.id));
-  }
+
   return (
     <>
       {isLoading && <p>Loading...</p>}
@@ -36,10 +26,7 @@ export function ContactsList() {
         <ul>
           {filteredContacts.map(contact => (
             <ContactItemStyled key={contact._id}>
-              <ContactItem
-                contact={contact}
-                deleteBtnHandler={deleteBtnHandler}
-              />
+              <ContactItem contact={contact} {...props} />
             </ContactItemStyled>
           ))}
         </ul>
@@ -47,4 +34,4 @@ export function ContactsList() {
       {contacts.length === 0 && <p>There is empty here</p>}
     </>
   );
-}
+};

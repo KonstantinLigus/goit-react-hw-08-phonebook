@@ -2,44 +2,50 @@ import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from 'redux/auth/authOperations';
 import { UserInfo } from 'components/UserInfo/UserInfo';
 import { LogOutBtn } from 'components/UserInfo/UserInfoStyled.styled';
-import { selectIsLoggedIn } from 'redux/auth/authSelectors';
-import { MenuItem, NavigationStyled } from './NavigationStyled.styled';
+import { selectIsLoggedIn, selectSubscription } from 'redux/auth/authSelectors';
+import { MenuItemStyled, NavigationStyled } from './NavigationStyled.styled';
 import { NavLinkStyled } from './NavLinkStyled.stled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
+  const subscription = useSelector(selectSubscription);
   const dispatch = useDispatch();
   const onLogOutClick = () => dispatch(logOut());
   return (
     <>
       <nav>
         <NavigationStyled>
-          <MenuItem>
+          <MenuItemStyled>
             <NavLinkStyled to="" end>
               Home
             </NavLinkStyled>
-          </MenuItem>
+          </MenuItemStyled>
           {!isLoggedIn && (
             <>
-              <MenuItem>
+              <MenuItemStyled>
                 <NavLinkStyled to="register">Register</NavLinkStyled>
-              </MenuItem>
-              <MenuItem>
+              </MenuItemStyled>
+              <MenuItemStyled>
                 <NavLinkStyled to="login">LogIn</NavLinkStyled>
-              </MenuItem>
+              </MenuItemStyled>
             </>
           )}
           {isLoggedIn && (
             <>
-              <MenuItem>
+              <MenuItemStyled>
                 <NavLinkStyled to="contacts">Contacts</NavLinkStyled>
-              </MenuItem>
-              <MenuItem>
+              </MenuItemStyled>
+              {subscription === 'pro' && (
+                <MenuItemStyled>
+                  <NavLinkStyled to="favorite">Favorites</NavLinkStyled>
+                </MenuItemStyled>
+              )}
+              <MenuItemStyled>
                 <UserInfo />
-              </MenuItem>
-              <MenuItem>
+              </MenuItemStyled>
+              <MenuItemStyled>
                 <LogOutBtn onClick={onLogOutClick}>Log Out</LogOutBtn>
-              </MenuItem>
+              </MenuItemStyled>
             </>
           )}
         </NavigationStyled>

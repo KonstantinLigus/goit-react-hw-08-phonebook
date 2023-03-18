@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useDispatch } from 'react-redux';
-import { FieldStyled } from 'components/commonStyles/FieldStyled.styled';
-import { LabelStyled } from 'components/commonStyles/LabelStyled.styled';
+import { FieldStyled, LabelStyled } from 'components/commonStyles/commonStyles';
 import { register } from 'redux/auth/authOperations';
 import { RegisterBtn } from './RegisterFormStyled.styled';
 

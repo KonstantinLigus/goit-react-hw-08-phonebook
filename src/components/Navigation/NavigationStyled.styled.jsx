@@ -10,7 +10,7 @@ export const NavigationStyled = styled.ul`
   }
 `;
 
-export const MenuItem = styled.li`
+export const MenuItemStyled = styled.li`
   font-size: 20px;
   :not(:first-child) {
     margin-left: 20px;

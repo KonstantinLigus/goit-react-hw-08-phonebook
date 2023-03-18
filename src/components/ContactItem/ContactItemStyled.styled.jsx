@@ -1,6 +1,7 @@
 import { Field } from 'formik';
 import styled from 'styled-components';
 import { ReactComponent as EditLogo } from '../../icons/pencil.svg';
+import { ReactComponent as FavoriteLogo } from '../../icons/star-fill.svg';
 
 export const ButtonItemStyled = styled.button`
   display: inline;
@@ -13,8 +14,11 @@ export const ButtonItemStyled = styled.button`
 `;
 
 export const ContactInputStyled = styled(Field)`
-  width: ${props => props.value.length + 1 + 'ch'};
+  width: ${props => props.value?.length + 1 + 'ch'};
+  height: 25px;
+  margin-left: 5px;
   border-style: none;
+  font-size: 16px;
 `;
 
 export const EditLogoStyled = styled(EditLogo)`
@@ -24,5 +28,23 @@ export const EditLogoStyled = styled(EditLogo)`
   }
   :active {
     box-shadow: 2px 2px 5px #fc894d;
+  }
+`;
+
+export const FavoriteLogoStyled = styled(FavoriteLogo)`
+  display: block;
+  cursor: pointer;
+  margin: 10px auto 0;
+  fill: ${props => (props.favorite === 'true' ? 'rgb(0, 140, 255)' : 'none')};
+  stroke: ${props =>
+    props.favorite === 'true' ? 'rgb(0, 140, 255)' : 'rgb(0, 0, 0)'};
+  stroke-width: 1.2px;
+`;
+
+export const FieldWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  :not(:last-of-type) {
+    margin-bottom: 10px;
   }
 `;
