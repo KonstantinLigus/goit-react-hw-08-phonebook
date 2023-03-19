@@ -20,7 +20,7 @@ export const register = createAsyncThunk(
       setAuthorizationHeader(res.data.token);
       return res.data;
     } catch (error) {
-      return thunkApi.rejectWithValue(error.message);
+      return thunkApi.rejectWithValue(error.response.data.message);
     }
   }
 );

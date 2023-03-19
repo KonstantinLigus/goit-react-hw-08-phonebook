@@ -1,18 +1,37 @@
 import { Form, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
-import { FieldStyled, LabelStyled } from 'components/commonStyles/commonStyles';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  ErrorStyled,
+  FieldStyled,
+  LabelStyled,
+} from 'components/commonStyles/commonStyles';
 import { register } from 'redux/auth/authOperations';
 import { RegisterBtn } from './RegisterFormStyled.styled';
+import {
+  selectAuthError,
+  selectAuthErrorMessage,
+} from 'redux/auth/authSelectors';
+import { useEffect } from 'react';
+import { setUserError } from 'redux/auth/authSlice';
 
 export const RegisterForm = () => {
+  const error = useSelector(selectAuthError);
+  const errorMessage = useSelector(selectAuthErrorMessage);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    return () => {
+      dispatch(setUserError());
+    };
+  }, [dispatch]);
+
   const initialValues = {
     name: '',
     email: '',
     password: '',
   };
 
-  function submitHandler(values, actions) {
+  const onSubmitClick = (values, actions) => {
     const { email, name, password } = values;
     actions.resetForm({
       values: {
@@ -22,13 +41,16 @@ export const RegisterForm = () => {
       },
     });
     dispatch(register({ name, email, password }));
-  }
+  };
 
   return (
-    <Formik initialValues={initialValues} onSubmit={submitHandler}>
+    <Formik initialValues={initialValues} onSubmit={onSubmitClick}>
       <Form>
         <LabelStyled htmlFor="name">Username:</LabelStyled>
         <FieldStyled className="Field_mg" id="name" type="text" name="name" />
+        {error && errorMessage === 'name in use' && (
+          <ErrorStyled>{errorMessage}</ErrorStyled>
+        )}
         <LabelStyled htmlFor="email">Email:</LabelStyled>
         <FieldStyled
           className="Field_mg"
@@ -36,6 +58,9 @@ export const RegisterForm = () => {
           type="email"
           name="email"
         />
+        {error && errorMessage === 'email in use' && (
+          <ErrorStyled>{errorMessage}</ErrorStyled>
+        )}
         <LabelStyled htmlFor="password">Password:</LabelStyled>
         <FieldStyled
           className="Field_mg"

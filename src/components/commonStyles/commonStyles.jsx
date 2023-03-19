@@ -19,9 +19,13 @@ export const FieldStyled = styled(Field)`
 `;
 
 export const ErrorMessageStyled = ({ name }) => (
-  <ErrorMessage name={name} render={message => <PStyled>{message}</PStyled>} />
+  <ErrorMessage
+    name={name}
+    render={message => <ErrorStyled>{message}</ErrorStyled>}
+  />
 );
-const PStyled = styled.p`
+export const ErrorStyled = styled.p`
+  margin-bottom: 10px;
   font-size: 14px;
   color: red;
 `;

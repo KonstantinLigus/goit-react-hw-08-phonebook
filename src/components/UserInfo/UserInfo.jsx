@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeUserSubscription } from 'redux/auth/authOperations';
-import { selectUser } from 'redux/auth/authSelectors';
+import { selectUser, selectUserAvatar } from 'redux/auth/authSelectors';
 
 import {
   Subscription,
   SubscriptionChange,
   SubscriptionChoice,
   SubscriptionEnumWrap,
+  UserAvatar,
   UserInfoWrap,
   UserSubscriptionWrap,
 } from './UserInfoStyled.styled';
 
 export const UserInfo = () => {
+  const avatar = useSelector(selectUserAvatar);
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const [isSubscriptionEnumShow, setIsSubscriptionEnumShow] = useState(false);
@@ -38,6 +40,7 @@ export const UserInfo = () => {
   return (
     <UserInfoWrap>
       <p>Welcome, {user.name}</p>
+      {avatar && <UserAvatar src={avatar} alt="avatar" />}
       <UserSubscriptionWrap>
         <Subscription>{user.subscription}</Subscription>
         <SubscriptionChange onClick={onSubscriptionChangeClick}>

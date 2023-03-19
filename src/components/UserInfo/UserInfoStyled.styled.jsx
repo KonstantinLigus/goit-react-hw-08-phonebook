@@ -52,3 +52,9 @@ export const LogOutBtn = styled.button`
   background-color: rgb(161, 200, 231);
   border-color: rgb(161, 200, 231);
 `;
+
+export const UserAvatar = styled.img`
+  width: 30px;
+  height: 30px;
+  margin-left: 5px;
+`;
