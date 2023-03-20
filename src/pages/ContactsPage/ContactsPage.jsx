@@ -16,7 +16,7 @@ const ContactsPage = () => {
   return (
     <>
       <ContactForm />
-      <Box p="20px">
+      <Box p="10px">
         <ContactsTitle>Contacts</ContactsTitle>
         <Filter />
         <ContactsList />

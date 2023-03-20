@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const USERS_BASE_URL = 'http://localhost:8080';
+const USERS_BASE_URL = 'https://phonebook-api-xnds.onrender.com';
 
 const setAuthorizationHeader = token =>
   (axios.defaults.headers.common.Authorization = `Bearer ${token}`);

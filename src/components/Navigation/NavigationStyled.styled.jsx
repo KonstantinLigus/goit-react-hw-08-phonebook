@@ -5,6 +5,7 @@ export const NavigationStyled = styled.ul`
   padding: 10px;
   height: 105px;
   text-align: center;
+  justify-content: center;
   font-weight: 300;
 `;
 

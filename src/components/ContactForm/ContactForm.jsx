@@ -1,11 +1,15 @@
-import { Formik, Form } from 'formik';
-import { Box } from 'components/Box';
+import { Formik } from 'formik';
 import {
   FieldStyled,
   LabelStyled,
   ErrorMessageStyled,
 } from '../commonStyles/commonStyles';
-import { ButtonSyled, FormTitle } from './ContactFormStyled.styled';
+import {
+  ButtonSyled,
+  ContactFormWrapper,
+  FormStyled,
+  FormTitle,
+} from './ContactFormStyled.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/conatactsOperations';
 import { selectContacts } from 'redux/contacts/conatacsSelectors';
@@ -43,14 +47,14 @@ export function ContactForm() {
     dispatch(addContact({ name, phone, email }));
   }
   return (
-    <Box p="20px">
-      <FormTitle>Phonebook</FormTitle>
+    <ContactFormWrapper>
+      <FormTitle>Add new contact</FormTitle>
       <Formik
         initialValues={initialValues}
         validationSchema={Schema}
         onSubmit={submitHandler}
       >
-        <Form>
+        <FormStyled>
           <LabelStyled htmlFor="name">Name</LabelStyled>
           <FieldStyled id="name" name="name" />
           <ErrorMessageStyled name="name" />
@@ -65,8 +69,8 @@ export function ContactForm() {
             </>
           )}
           <ButtonSyled type="submit">Add contact</ButtonSyled>
-        </Form>
+        </FormStyled>
       </Formik>
-    </Box>
+    </ContactFormWrapper>
   );
 }

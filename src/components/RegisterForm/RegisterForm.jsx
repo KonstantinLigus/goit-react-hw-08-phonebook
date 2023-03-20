@@ -1,8 +1,9 @@
-import { Form, Formik } from 'formik';
+import { Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import {
   ErrorStyled,
   FieldStyled,
+  FormStyled,
   LabelStyled,
 } from 'components/commonStyles/commonStyles';
 import { register } from 'redux/auth/authOperations';
@@ -45,7 +46,7 @@ export const RegisterForm = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={onSubmitClick}>
-      <Form>
+      <FormStyled>
         <LabelStyled htmlFor="name">Username:</LabelStyled>
         <FieldStyled className="Field_mg" id="name" type="text" name="name" />
         {error && errorMessage === 'name in use' && (
@@ -69,7 +70,7 @@ export const RegisterForm = () => {
           name="password"
         />
         <RegisterBtn type="submit">Register</RegisterBtn>
-      </Form>
+      </FormStyled>
     </Formik>
   );
 };

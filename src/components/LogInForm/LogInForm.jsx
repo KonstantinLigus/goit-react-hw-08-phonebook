@@ -1,5 +1,9 @@
-import { FieldStyled, LabelStyled } from 'components/commonStyles/commonStyles';
-import { Form, Formik } from 'formik';
+import {
+  FieldStyled,
+  FormStyled,
+  LabelStyled,
+} from 'components/commonStyles/commonStyles';
+import { Formik } from 'formik';
 import { useDispatch } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
 import { LogInBtn } from './LogInFormStyled.styled';
@@ -24,7 +28,7 @@ export const LoginForm = () => {
 
   return (
     <Formik initialValues={initialValues} onSubmit={submitHandler}>
-      <Form>
+      <FormStyled>
         <LabelStyled htmlFor="email">Email:</LabelStyled>
         <FieldStyled
           className="Field_mg"
@@ -40,7 +44,7 @@ export const LoginForm = () => {
           name="password"
         />
         <LogInBtn type="submit">Log In</LogInBtn>
-      </Form>
+      </FormStyled>
     </Formik>
   );
 };

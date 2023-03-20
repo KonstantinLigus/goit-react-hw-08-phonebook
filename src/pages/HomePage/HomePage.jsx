@@ -1,8 +1,9 @@
 import { Box } from 'components/Box';
+import { TytleStyled } from './HomePageStyled';
 
 const HomePage = () => (
   <Box pl={10}>
-    <h1>Welcome to the Contacts!</h1>
+    <TytleStyled>Welcome to the Phonebook!</TytleStyled>
   </Box>
 );
 

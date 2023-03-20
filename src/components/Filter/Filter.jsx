@@ -14,7 +14,7 @@ export function Filter() {
     return null;
   }
   return (
-    <>
+    <Box mx="auto" width={300}>
       <Box htmlFor="filter" display="block" mb="10px" as="label">
         Find contacts by name
       </Box>
@@ -24,6 +24,6 @@ export function Filter() {
         name="filter"
         onChange={changeFilterHandler}
       />
-    </>
+    </Box>
   );
 }

@@ -6,7 +6,10 @@ import {
   selectFilter,
   selectIsLoading,
 } from 'redux/contacts/conatacsSelectors';
-import { ContactItemStyled } from 'components/ContactsList/ContactsListStyled.styled';
+import {
+  ContactItemStyled,
+  LoadingStyled,
+} from 'components/ContactsList/ContactsListStyled.styled';
 
 export const ContactsList = props => {
   const error = useSelector(selectError);
@@ -21,7 +24,7 @@ export const ContactsList = props => {
 
   return (
     <>
-      {isLoading && <p>Loading...</p>}
+      {isLoading && <LoadingStyled>Loading...</LoadingStyled>}
       {!error && (
         <ul>
           {filteredContacts.map(contact => (
@@ -31,7 +34,9 @@ export const ContactsList = props => {
           ))}
         </ul>
       )}
-      {contacts.length === 0 && <p>There is empty here</p>}
+      {contacts.length === 0 && (
+        <LoadingStyled>There is empty here</LoadingStyled>
+      )}
     </>
   );
 };

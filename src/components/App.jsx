@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { refreshUser } from 'redux/auth/authOperations';
 import { selectIsLoggedIn, selectIsRefresh } from 'redux/auth/authSelectors';
-import { SharedLayout } from './SharedLayout';
+import { SharedLayout } from './SharedLayout/SharedLayout';
 
 const HomePage = lazy(() => import('../pages/HomePage/HomePage'));
 const RegistrationPage = lazy(() =>
