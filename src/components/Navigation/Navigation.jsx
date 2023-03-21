@@ -3,8 +3,12 @@ import { logOut } from 'redux/auth/authOperations';
 import { UserInfo } from 'components/UserInfo/UserInfo';
 import { LogOutBtn } from 'components/UserInfo/UserInfoStyled.styled';
 import { selectIsLoggedIn, selectSubscription } from 'redux/auth/authSelectors';
-import { MenuItemStyled, NavigationStyled } from './NavigationStyled.styled';
-import { NavLinkStyled } from './NavLinkStyled.stled';
+import {
+  NavigationListStyled,
+  NavLinkStyled,
+  UserManagerStyled,
+  UserNavigationStyled,
+} from './NavigationStyled.styled';
 
 export const Navigation = () => {
   const isLoggedIn = useSelector(selectIsLoggedIn);
@@ -13,43 +17,33 @@ export const Navigation = () => {
   const onLogOutClick = () => dispatch(logOut());
   return (
     <>
-      <nav>
-        <NavigationStyled>
-          <MenuItemStyled>
-            <NavLinkStyled to="" end>
-              Home
-            </NavLinkStyled>
-          </MenuItemStyled>
+      <NavigationListStyled>
+        <UserNavigationStyled>
+          <NavLinkStyled to="" end>
+            Home
+          </NavLinkStyled>
           {!isLoggedIn && (
             <>
-              <MenuItemStyled>
-                <NavLinkStyled to="register">Register</NavLinkStyled>
-              </MenuItemStyled>
-              <MenuItemStyled>
-                <NavLinkStyled to="login">LogIn</NavLinkStyled>
-              </MenuItemStyled>
+              <NavLinkStyled to="register">Register</NavLinkStyled>
+              <NavLinkStyled to="login">LogIn</NavLinkStyled>
             </>
           )}
           {isLoggedIn && (
             <>
-              <MenuItemStyled>
-                <NavLinkStyled to="contacts">Contacts</NavLinkStyled>
-              </MenuItemStyled>
+              <NavLinkStyled to="contacts">Contacts</NavLinkStyled>
               {subscription === 'pro' && (
-                <MenuItemStyled>
-                  <NavLinkStyled to="favorite">Favorites</NavLinkStyled>
-                </MenuItemStyled>
+                <NavLinkStyled to="favorite">Favorites</NavLinkStyled>
               )}
-              <MenuItemStyled>
-                <UserInfo />
-              </MenuItemStyled>
-              <MenuItemStyled>
-                <LogOutBtn onClick={onLogOutClick}>Log Out</LogOutBtn>
-              </MenuItemStyled>
             </>
           )}
-        </NavigationStyled>
-      </nav>
+        </UserNavigationStyled>
+        {isLoggedIn && (
+          <UserManagerStyled>
+            <UserInfo />
+            <LogOutBtn onClick={onLogOutClick}>Log Out</LogOutBtn>
+          </UserManagerStyled>
+        )}
+      </NavigationListStyled>
     </>
   );
 };

@@ -1,9 +1,4 @@
-import { Form } from 'formik';
 import styled from 'styled-components';
-
-export const ContactFormWrapper = styled.div`
-  margin-top: 20px;
-`;
 
 export const ButtonSyled = styled.button`
   margin-top: 20px;
@@ -17,10 +12,4 @@ export const FormTitle = styled.h2`
   margin-bottom: 20px;
   font-weight: 300;
   text-align: center;
-`;
-
-export const FormStyled = styled(Form)`
-  max-width: 320px;
-  margin: auto;
-  padding: 0 10px;
 `;

@@ -22,6 +22,7 @@ export const ContactsList = props => {
     contact.name.toLowerCase().includes(filterToLowerCase)
   );
 
+
   return (
     <>
       {isLoading && <LoadingStyled>Loading...</LoadingStyled>}

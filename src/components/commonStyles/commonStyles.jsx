@@ -8,9 +8,13 @@ export const LabelStyled = styled.label`
   font-size: 16px;
 `;
 
+export const FormStyled = styled(Form)`
+  max-width: 300px;
+  margin: auto;
+`;
 export const FieldStyled = styled(Field)`
   display: block;
-  width: 300px;
+  width: 100%;
   height: 30px;
   font-size: 14px;
   :not(:last-of-type) {
@@ -28,8 +32,4 @@ export const ErrorStyled = styled.p`
   margin-bottom: 10px;
   font-size: 14px;
   color: red;
-`;
-export const FormStyled = styled(Form)`
-  width: 300px;
-  margin: auto;
 `;

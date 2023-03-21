@@ -3,18 +3,15 @@ import {
   FieldStyled,
   LabelStyled,
   ErrorMessageStyled,
-} from '../commonStyles/commonStyles';
-import {
-  ButtonSyled,
-  ContactFormWrapper,
   FormStyled,
-  FormTitle,
-} from './ContactFormStyled.styled';
+} from '../commonStyles/commonStyles';
+import { ButtonSyled, FormTitle } from './ContactFormStyled.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/conatactsOperations';
 import { selectContacts } from 'redux/contacts/conatacsSelectors';
 import { Schema } from 'schema';
 import { selectSubscription } from 'redux/auth/authSelectors';
+import { Box } from 'components/Box';
 
 const initialValues = {
   name: '',
@@ -47,7 +44,7 @@ export function ContactForm() {
     dispatch(addContact({ name, phone, email }));
   }
   return (
-    <ContactFormWrapper>
+    <Box mb={20}>
       <FormTitle>Add new contact</FormTitle>
       <Formik
         initialValues={initialValues}
@@ -71,6 +68,6 @@ export function ContactForm() {
           <ButtonSyled type="submit">Add contact</ButtonSyled>
         </FormStyled>
       </Formik>
-    </ContactFormWrapper>
+    </Box>
   );
 }

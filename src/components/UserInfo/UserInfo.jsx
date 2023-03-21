@@ -10,6 +10,7 @@ import {
   SubscriptionEnumWrap,
   UserAvatar,
   UserInfoWrap,
+  UserName,
   UserSubscriptionWrap,
 } from './UserInfoStyled.styled';
 
@@ -39,7 +40,7 @@ export const UserInfo = () => {
 
   return (
     <UserInfoWrap>
-      <p>Welcome, {user.name}</p>
+      <UserName>{user.name}</UserName>
       {avatar && <UserAvatar src={avatar} alt="avatar" />}
       <UserSubscriptionWrap>
         <Subscription>{user.subscription}</Subscription>

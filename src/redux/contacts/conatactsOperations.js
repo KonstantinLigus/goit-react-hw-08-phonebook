@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
-const CONTACTS_BASE_URL = 'https://phonebook-api-xnds.onrender.com';
+const baseUrl = process.env.REACT_APP_BASE_URL;
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(`${CONTACTS_BASE_URL}/contacts`);
+      const response = await axios.get(`${baseUrl}/contacts`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -19,9 +19,7 @@ export const fetchFavoriteContacts = createAsyncThunk(
   'contacts/fetchFavorites',
   async (_, { rejectWithValue }) => {
     try {
-      const response = await axios.get(
-        `${CONTACTS_BASE_URL}/contacts/fetch/favorites`
-      );
+      const response = await axios.get(`${baseUrl}/contacts/fetch/favorites`);
       return response.data;
     } catch (error) {
       return rejectWithValue(error);
@@ -33,9 +31,7 @@ export const deleteContact = createAsyncThunk(
   'contacts/delete',
   async (contactId, { rejectWithValue, getState }) => {
     try {
-      const response = await axios.delete(
-        `${CONTACTS_BASE_URL}/contacts/${contactId}`
-      );
+      const response = await axios.delete(`${baseUrl}/contacts/${contactId}`);
       const filteredItems = getState().contacts.items.filter(
         contact => contact._id !== response.data.deletedContact._id
       );
@@ -50,10 +46,7 @@ export const addContact = createAsyncThunk(
   'contact/add',
   async (contact, { rejectWithValue }) => {
     try {
-      const response = await axios.post(
-        `${CONTACTS_BASE_URL}/contacts`,
-        contact
-      );
+      const response = await axios.post(`${baseUrl}/contacts`, contact);
       return response.data.createdContact;
     } catch (error) {
       return rejectWithValue(error);
@@ -67,7 +60,7 @@ export const updateContact = createAsyncThunk(
     const { _id: contactId, values } = updatedContact;
     try {
       const response = await axios.patch(
-        `${CONTACTS_BASE_URL}/contacts/${contactId}`,
+        `${baseUrl}/contacts/${contactId}`,
         values
       );
       const contactFromRes = response.data.updatedContact;

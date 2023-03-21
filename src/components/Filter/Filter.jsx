@@ -2,7 +2,7 @@ import { Box } from 'components/Box';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from 'redux/contacts/conatacsSelectors';
 import { filter } from 'redux/filterSlice';
-import { FilterStyled } from './FilterStyled.styled';
+import { FilterStyled, FilterWrapper } from './FilterStyled.styled';
 
 export function Filter() {
   const contacts = useSelector(selectContacts);
@@ -14,7 +14,7 @@ export function Filter() {
     return null;
   }
   return (
-    <Box mx="auto" width={300}>
+    <FilterWrapper>
       <Box htmlFor="filter" display="block" mb="10px" as="label">
         Find contacts by name
       </Box>
@@ -24,6 +24,6 @@ export function Filter() {
         name="filter"
         onChange={changeFilterHandler}
       />
-    </Box>
+    </FilterWrapper>
   );
 }

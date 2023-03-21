@@ -14,14 +14,12 @@ const ContactsPage = () => {
   }, [dispatch]);
 
   return (
-    <>
+    <Box p="10px">
       <ContactForm />
-      <Box p="10px">
-        <ContactsTitle>Contacts</ContactsTitle>
-        <Filter />
-        <ContactsList />
-      </Box>
-    </>
+      <ContactsTitle>Contacts</ContactsTitle>
+      <Filter />
+      <ContactsList />
+    </Box>
   );
 };
 

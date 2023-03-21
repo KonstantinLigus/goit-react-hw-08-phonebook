@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 
 export const UserInfoWrap = styled.div`
-  display: flex;
+  display: inline-flex;
 `;
 
 export const UserSubscriptionWrap = styled.div`
   display: inline;
   margin-left: 10px;
+  width: 80px;
 `;
 
 export const SubscriptionEnumWrap = styled.ul`
@@ -47,6 +48,7 @@ export const Subscription = styled.p`
 
 export const LogOutBtn = styled.button`
   height: 30px;
+  margin-left: 10px;
   font-size: 15px;
   cursor: pointer;
   background-color: rgb(161, 200, 231);
@@ -57,4 +59,9 @@ export const UserAvatar = styled.img`
   width: 30px;
   height: 30px;
   margin-left: 5px;
+`;
+
+export const UserName = styled.p`
+  font-size: 20px;
+  font-weight: 400;
 `;
