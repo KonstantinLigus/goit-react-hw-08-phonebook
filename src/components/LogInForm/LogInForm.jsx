@@ -1,21 +1,29 @@
 import {
+  ErrorStyled,
   FieldStyled,
   FormStyled,
   LabelStyled,
 } from 'components/commonStyles/commonStyles';
 import { Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logIn } from 'redux/auth/authOperations';
 import { LogInBtn } from './LogInFormStyled.styled';
+import {
+  selectAuthError,
+  selectAuthErrorMessage,
+} from 'redux/auth/authSelectors';
 
 export const LoginForm = () => {
+  const error = useSelector(selectAuthError);
+  const errorMessage = useSelector(selectAuthErrorMessage);
+
   const dispatch = useDispatch();
   const initialValues = {
     email: '',
     password: '',
   };
 
-  function submitHandler(values, actions) {
+  function onSubmitClick(values, actions) {
     const { email, password } = values;
     actions.resetForm({
       values: {
@@ -27,7 +35,7 @@ export const LoginForm = () => {
   }
 
   return (
-    <Formik initialValues={initialValues} onSubmit={submitHandler}>
+    <Formik initialValues={initialValues} onSubmit={onSubmitClick}>
       <FormStyled>
         <LabelStyled htmlFor="email">Email:</LabelStyled>
         <FieldStyled
@@ -43,6 +51,10 @@ export const LoginForm = () => {
           type="password"
           name="password"
         />
+        {error && errorMessage === 'Password is wrong' && (
+          <ErrorStyled>{errorMessage}</ErrorStyled>
+        )}
+
         <LogInBtn type="submit">Log In</LogInBtn>
       </FormStyled>
     </Formik>
